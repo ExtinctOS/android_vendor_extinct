@@ -1,7 +1,7 @@
-function __print_neoteric_functions_help() {
+function __print_extinct_functions_help() {
 cat <<EOF
-Additional Neoteric functions:
-- clodiff:         Utility to diff CLO history to Neoteric.
+Additional extinct functions:
+- clodiff:         Utility to diff CLO history to extinct.
 - clomerge:        Utility to merge CLO tags.
 - roomservice:     Utility to sync device dependencies.
 - sort-blobs-list: Sort proprietary-files.txt sections with LC_ALL=C.
@@ -17,7 +17,7 @@ function clodiff()
     target_branch=$1
     set_stuff_for_environment
     T=$(gettop)
-    python3 $T/vendor/neoteric/build/tools/diff-clo.py $target_branch
+    python3 $T/vendor/extinct/build/tools/diff-clo.py $target_branch
 }
 
 function clomerge()
@@ -26,7 +26,7 @@ function clomerge()
     push=$2
     set_stuff_for_environment
     T=$(gettop)
-    python3 $T/vendor/neoteric/build/tools/merge-clo.py $target_branch $push
+    python3 $T/vendor/extinct/build/tools/merge-clo.py $target_branch $push
 }
 
 function roomservice() {
@@ -38,8 +38,8 @@ function roomservice() {
     fi
     T=$(gettop)
     TARGET_MANUFACTURER=$(get_build_var PRODUCT_MANUFACTURER 2>/dev/null | tr '[:upper:]' '[:lower:]')
-    if [ -f "device/$TARGET_MANUFACTURER/$TARGET_PRODUCT/neoteric.dependencies" ]; then
-        python3 $T/vendor/neoteric/build/tools/roomservice.py device/$TARGET_MANUFACTURER/$TARGET_PRODUCT
+    if [ -f "device/$TARGET_MANUFACTURER/$TARGET_PRODUCT/extinct.dependencies" ]; then
+        python3 $T/vendor/extinct/build/tools/roomservice.py device/$TARGET_MANUFACTURER/$TARGET_PRODUCT
     else
         echo "Roomservice configuration not found in device tree, aborting roomservice."
         return
@@ -75,7 +75,7 @@ function genkeys() {
     mkdir -p "$certs_dir"
 
     # Subject details
-    subject="/O=Neoteric/OU=Neoteric/CN=Neoteric"
+    subject="/O=extinct/OU=extinct/CN=extinct"
 
     # Make keys
     local keys=( releasekey devkey platform shared media networkstack nfc testkey sdk_sandbox bluetooth )
