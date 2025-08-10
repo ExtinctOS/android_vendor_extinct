@@ -6,12 +6,12 @@ import (
 	"android/soong/android"
 )
 
-func neotericExpandVariables(ctx android.ModuleContext, in string) string {
-	neotericVars := ctx.Config().VendorConfig("neotericVarsPlugin")
+func extinctExpandVariables(ctx android.ModuleContext, in string) string {
+	extinctVars := ctx.Config().VendorConfig("extinctVarsPlugin")
 
 	out, err := android.Expand(in, func(name string) (string, error) {
-		if neotericVars.IsSet(name) {
-			return neotericVars.String(name), nil
+		if extinctVars.IsSet(name) {
+			return extinctVars.String(name), nil
 		}
 		// This variable is not for us, restore what the original
 		// variable string will have looked like for an Expand

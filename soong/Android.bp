@@ -1,9 +1,9 @@
-// Neoteric Soong Configurations
+// ExtinctOS Soong Configurations
 
 soong_config_module_type {
     name: "needs_camera_boottime",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     bool_variables: ["needs_camera_boottime"],
     properties: ["cppflags"],
 }
@@ -20,7 +20,7 @@ needs_camera_boottime {
 soong_config_module_type {
     name: "powershare_node",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     value_variables: ["powershare_node"],
     properties: ["cppflags"],
 }
@@ -28,7 +28,7 @@ soong_config_module_type {
 soong_config_module_type {
     name: "health_charging_control",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     bool_variables: [
         "target_health_charging_control_supports_toggle",
         "target_health_charging_control_supports_bypass",
@@ -82,7 +82,7 @@ powershare_node {
 soong_config_module_type {
     name: "target_camera_package_name",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     value_variables: ["target_camera_package_name"],
     properties: ["cppflags"],
 }
@@ -99,7 +99,7 @@ target_camera_package_name {
 soong_config_module_type {
     name: "target_process_sdk_version_overrides",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     value_variables: ["target_process_sdk_version_override"],
     properties: ["cppflags"],
 }
@@ -116,7 +116,7 @@ target_process_sdk_version_overrides {
 soong_config_module_type {
     name: "target_shim_libs",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     value_variables: ["target_ld_shim_libs"],
     properties: ["cppflags"],
 }
@@ -133,7 +133,7 @@ target_shim_libs {
 soong_config_module_type {
     name: "vendor_init",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     value_variables: ["target_init_vendor_lib"],
     properties: ["whole_static_libs"],
 }
@@ -150,7 +150,7 @@ vendor_init {
 soong_config_module_type {
     name: "surfaceflinger_udfps_lib",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     value_variables: ["target_surfaceflinger_udfps_lib"],
     properties: [
         "cppflags",
@@ -169,7 +169,7 @@ surfaceflinger_udfps_lib {
 }
 
 cc_defaults {
-    name: "neoteric_aidl_defaults",
+    name: "extinct_aidl_defaults",
     cflags: [
         "-Wall",
         "-Werror",
@@ -189,8 +189,8 @@ cc_defaults {
 }
 
 bootstrap_go_package {
-    name: "soong-neoteric-generator",
-    pkgPath: "neoteric/soong/generator",
+    name: "soong-extinct-generator",
+    pkgPath: "extinct/soong/generator",
     deps: [
         "blueprint",
         "blueprint-pathtools",
@@ -205,11 +205,11 @@ bootstrap_go_package {
     pluginFor: ["soong_build"],
 }
 
-neoteric_generator {
+extinct_generator {
     name: "generated_kernel_includes",
 
     // The headers make command
-    cmd: "$(PATH_OVERRIDE_SOONG) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_SOURCE) O=$(KERNEL_BUILD_OUT_PREFIX)$(genDir) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) headers_install && vendor/neoteric/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
+    cmd: "$(PATH_OVERRIDE_SOONG) $(KERNEL_MAKE_CMD) $(KERNEL_MAKE_FLAGS) -C $(TARGET_KERNEL_SOURCE) O=$(KERNEL_BUILD_OUT_PREFIX)$(genDir) ARCH=$(KERNEL_ARCH) $(KERNEL_CROSS_COMPILE) headers_install && vendor/extinct/tools/clean_headers.sh $(KERNEL_BUILD_OUT_PREFIX)$(genDir)",
 
     // Directories that can be imported by a cc_* module generated_headers property
     export_include_dirs: [
@@ -251,7 +251,7 @@ cc_library_headers {
 soong_config_module_type {
     name: "aapt_version_code",
     module_type: "java_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     value_variables: ["aapt_version_code"],
     properties: ["aaptflags"],
 }
@@ -271,7 +271,7 @@ aapt_version_code {
 soong_config_module_type {
     name: "libcameraservice_ext_lib",
     module_type: "cc_defaults",
-    config_namespace: "neotericGlobalVars",
+    config_namespace: "extinctGlobalVars",
     value_variables: ["target_libcameraservice_ext_lib"],
     properties: [
         "cppflags",
