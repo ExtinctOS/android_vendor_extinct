@@ -28,10 +28,10 @@ include device/qcom/common/BoardConfigQcom.mk
 endif
 
 # Include our sepolicy
--include device/neoteric/sepolicy/sepolicy.mk
+-include device/extinct/sepolicy/sepolicy.mk
 
 # Kernel configuration.
-include vendor/neoteric/target/board/BoardConfigKernel.mk
+include vendor/extinct/target/board/BoardConfigKernel.mk
 
 # Soong
-include vendor/neoteric/target/board/BoardConfigSoong.mk
+include vendor/extinct/target/board/BoardConfigSoong.mk

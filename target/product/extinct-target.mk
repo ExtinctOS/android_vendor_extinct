@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ifneq ($(wildcard certs/releasekey.*),)
-$(call inherit-product, vendor/neoteric/target/product/sign.mk) 
+$(call inherit-product, vendor/extinct/target/product/sign.mk)
 endif
 
 # Enable support for APEX updates
@@ -28,19 +28,19 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += initial-package-stopped-states-aosp.xml
 
 # Neoteric Version.
-$(call inherit-product, vendor/neoteric/target/product/version.mk)
+$(call inherit-product, vendor/extinct/target/product/version.mk)
 
 # APNs
 ifneq ($(TARGET_NO_TELEPHONY), true)
 PRODUCT_COPY_FILES += \
-    vendor/neoteric/target/config/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
+    vendor/extinct/target/config/apns-conf.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/apns-conf.xml
 endif
 
 # Inherit art options
-include vendor/neoteric/target/product/art.mk
+include vendor/extinct/target/product/art.mk
 
 # Boot Animation
-$(call inherit-product, vendor/neoteric/bootanimation/bootanimation.mk)
+$(call inherit-product, vendor/extinct/bootanimation/bootanimation.mk)
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -88,14 +88,14 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 $(call inherit-product, vendor/gms/products/gms.mk)
 
 # Pixel goodies
-$(call inherit-product, vendor/neoteric_prebuilt/pixel/packages.mk)
+$(call inherit-product, vendor/extinct_prebuilt/pixel/packages.mk)
 
 # GMS Spoof
 $(call inherit-product, vendor/gms_spoof/config.mk)
 
 # HIDL
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE += \
-     vendor/neoteric/target/config/neoteric_vendor_framework_compatibility_matrix.xml
+     vendor/extinct/target/config/neoteric_vendor_framework_compatibility_matrix.xml
 
 PRODUCT_PACKAGES += \
     android.hidl.base@1.0 \
@@ -132,14 +132,14 @@ PRODUCT_PRODUCT_PROPERTIES += \
     ro.support_one_handed_mode=true
 
 # Overlays
-$(call inherit-product, vendor/neoteric/overlay/overlays.mk)
+$(call inherit-product, vendor/extinct/overlay/overlays.mk)
 
 # OTA
 IS_OFFICIAL ?= false
 ifneq ($(IS_OFFICIAL), false)
 PRODUCT_COPY_FILES += \
-    vendor/neoteric/target/init/neoteric-updates.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/neoteric-updates.rc \
-    vendor/neoteric/target/init/clean_cache.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/clean_cache.sh
+    vendor/extinct/target/init/neoteric-updates.rc:$(TARGET_COPY_OUT_SYSTEM)/etc/init/neoteric-updates.rc \
+    vendor/extinct/target/init/clean_cache.sh:$(TARGET_COPY_OUT_SYSTEM)/bin/clean_cache.sh
 endif
 
 # Paranoid Sense
@@ -159,14 +159,17 @@ PRODUCT_SYSTEM_EXT_PROPERTIES += \
 
 # Permissions
 PRODUCT_COPY_FILES += \
-    vendor/neoteric/target/config/permissions/default_permissions_com.google.android.deskclock.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default_permissions_com.google.android.deskclock.xml \
-    vendor/neoteric/target/config/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml \
-    vendor/neoteric/target/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml \
-    vendor/neoteric/target/config/permissions/privapp-permissions-neoteric-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-neoteric-product.xml \
+    vendor/extinct/target/config/permissions/default_permissions_com.google.android.deskclock.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/default-permissions/default_permissions_com.google.android.deskclock.xml \
+    vendor/extinct/target/config/permissions/privapp-permissions-hotword.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-hotword.xml \
+    vendor/extinct/target/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml \
+    vendor/extinct/target/config/permissions/privapp-permissions-neoteric-product.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/privapp-permissions-neoteric-product.xml
+
+PRODUCT_COPY_FILES += \
+    vendor/extinct/config/permissions/lineage-sysconfig.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/lineage-sysconfig.xml
 
 # Preinstalled Packages
 PRODUCT_COPY_FILES += \
-    vendor/neoteric/target/config/preinstalled-packages-neoteric.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-neoteric.xml
+    vendor/extinct/target/config/preinstalled-packages-neoteric.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/preinstalled-packages-neoteric.xml
 
 # Privapp-permissions
 PRODUCT_SYSTEM_EXT_PROPERTIES += \
@@ -199,7 +202,7 @@ PRODUCT_PRODUCT_PROPERTIES += \
 # Sensitive Phone Numbers
 ifneq ($(TARGET_NO_TELEPHONY), true)
 PRODUCT_COPY_FILES += \
-    vendor/neoteric/target/config/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
+    vendor/extinct/target/config/sensitive_pn.xml:$(TARGET_COPY_OUT_SYSTEM)/etc/sensitive_pn.xml
 endif
 
 # Sensors
@@ -276,3 +279,26 @@ PRODUCT_PACKAGES += \
     libwpa_client
 
 PRODUCT_VENDOR_MOVE_ENABLED := true
+
+# Permissions for lineage sdk services
+PRODUCT_COPY_FILES += \
+    vendor/extinct/config/permissions/org.lineageos.globalactions.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.globalactions.xml \
+    vendor/extinct/config/permissions/org.lineageos.hardware.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.hardware.xml \
+    vendor/extinct/config/permissions/org.lineageos.health.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.health.xml \
+    vendor/extinct/config/permissions/org.lineageos.livedisplay.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.livedisplay.xml \
+    vendor/extinct/config/permissions/org.lineageos.profiles.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.profiles.xml \
+    vendor/extinct/config/permissions/org.lineageos.settings.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.settings.xml \
+    vendor/extinct/config/permissions/org.lineageos.trust.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/org.lineageos.trust.xml
+
+# Lineage Platform Library
+PRODUCT_PACKAGES += \
+    org.lineageos.platform-res \
+    org.lineageos.platform
+
+# AOSP has no support of loading framework resources from /system_ext
+# so the SDK has to stay in /system for now
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/framework/oat/%/org.lineageos.platform.odex \
+    system/framework/oat/%/org.lineageos.platform.vdex \
+    system/framework/org.lineageos.platform-res.apk \
+    system/framework/org.lineageos.platform.jar
