@@ -14,4 +14,4 @@
 # limitations under the License.
 
 # Rules for QCOM targets
-include $(TOPDIR)vendor/neoteric/build/core/qcom_target.mk
+include $(TOPDIR)vendor/extinct/build/core/qcom_target.mk

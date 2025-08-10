@@ -28,7 +28,7 @@ extra_manifests_dir = '.repo/manifests/'
 upstream_manifest_path = '.repo/manifest.xml'
 local_manifests_dir = '.repo/local_manifests'
 roomservice_manifest_path = local_manifests_dir + '/roomservice.xml'
-dependencies_json_path = '%s/neoteric.dependencies'
+dependencies_json_path = '%s/extinct.dependencies'
 
 def indent(elem):
     """Return a pretty-printed XML string for the Element."""
